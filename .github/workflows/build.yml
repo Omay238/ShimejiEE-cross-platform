@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build ShimejiEE
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4.2.2
+      with:
+        path: ./ShimejiEE
+    - name: Setup Java
+      uses: actions/setup-java@4.7.0
+      with:
+        java-version: 21
+    - name: Build with Maven
+      run: cd ShimejiEE |
+        mvn clean package
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4.6.1
+      with:
+        name: ShimejiEE-${{ matrix.os }}
+        path: ShimejiEE/target/ShimejiEE
+  
