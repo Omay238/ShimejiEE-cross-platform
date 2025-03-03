@@ -19,7 +19,7 @@ jobs:
       with:
         path: ./ShimejiEE
     - name: Setup Java
-      uses: actions/setup-java@4.7.0
+      uses: actions/setup-java@v4.7.0
       with:
         java-version: 21
     - name: Build with Maven
