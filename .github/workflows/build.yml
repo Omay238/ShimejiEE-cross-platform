@@ -16,19 +16,17 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4.2.2
-      with:
-        path: ./ShimejiEE
     - name: Setup Java
       uses: actions/setup-java@v4.7.0
       with:
         java-version: 21
         distribution: zulu
     - name: Build with Maven
-      run: cd ShimejiEE |
+      run: cd ShimejiEE-cross-platform |
         mvn clean package
     - name: Upload Artifact
       uses: actions/upload-artifact@v4.6.1
       with:
         name: ShimejiEE-${{ matrix.os }}
-        path: ShimejiEE/target/ShimejiEE
+        path: ShimejiEE-cross-platform/target/ShimejiEE
   
