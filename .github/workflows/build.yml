@@ -21,11 +21,11 @@ jobs:
       with:
         java-version: 21
         distribution: zulu
+    - name: Setup Ninja
+      uses: ashutoshvarma/setup-ninja@v1.1
     - name: Build with Maven
       run: cd ShimejiEE-cross-platform |
         mvn clean package
-    - name: Setup Ninja
-      uses: ashutoshvarma/setup-ninja@v1.1
     - name: Upload Artifact
       uses: actions/upload-artifact@v4.6.1
       with:
